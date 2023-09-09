@@ -1,13 +1,12 @@
 package com.anderiana.avanade.service;
 
-import com.anderiana.avanade.dto.request.PersonagemDto;
+import com.anderiana.avanade.dto.PersonagemDto;
 import com.anderiana.avanade.entity.Personagem;
 import com.anderiana.avanade.repository.PersonagemRepository;
 import com.anderiana.avanade.service.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -25,7 +24,7 @@ public class PersonagemService {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(personagem.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-    public ResponseEntity<PersonagemDto> getOne(Long id) throws ObjectNotFoundException{
+    public ResponseEntity<PersonagemDto> getOne(Long id) throws ObjectNotFoundException{ //todo
         Optional<Personagem> personagemOp = this.personagemRepository.findById(id);
         return ResponseEntity.ok().body(personagemOp.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")).toDto());
     }

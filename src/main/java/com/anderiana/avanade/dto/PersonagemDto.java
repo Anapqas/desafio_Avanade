@@ -1,4 +1,4 @@
-package com.anderiana.avanade.dto.request;
+package com.anderiana.avanade.dto;
 
 import com.anderiana.avanade.dto.TipoPersonagem;
 

@@ -1,8 +1,7 @@
 package com.anderiana.avanade.entity;
 
 import com.anderiana.avanade.dto.TipoPersonagem;
-import com.anderiana.avanade.dto.request.PersonagemDto;
-import com.anderiana.avanade.dto.response.CreatePersonagemResponse;
+import com.anderiana.avanade.dto.PersonagemDto;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +28,7 @@ public class Personagem {
         this.tipoPersonagem = dto.tipoPersonagem();
         this.vida = dto.vida();
         this.defesa = dto.defesa();
-        this.forca = dto.forca();;
+        this.forca = dto.forca();
         this.agilidade = dto.agilidade();
         this.quantidadeDados = dto.quantidadeDados();
         this.facesDado = dto.facesDado();
@@ -43,9 +42,6 @@ public class Personagem {
     public Integer executeDano(){
        //TODO
         return null;
-    }
-    public CreatePersonagemResponse getResponse(){
-        return new CreatePersonagemResponse(this.id,this.nome);
     }
 
     public PersonagemDto toDto(){
