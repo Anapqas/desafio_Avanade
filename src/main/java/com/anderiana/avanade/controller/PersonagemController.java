@@ -2,6 +2,7 @@ package com.anderiana.avanade.controller;
 
 import com.anderiana.avanade.dto.PersonagemDto;
 import com.anderiana.avanade.service.PersonagemService;
+import com.anderiana.avanade.service.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class PersonagemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonagemDto> getOne(@PathVariable Long id) {
+    public ResponseEntity<PersonagemDto> getOne(@PathVariable Long id) throws ObjectNotFoundException {
         return personagemService.getOne(id);
     }
     @GetMapping
