@@ -1,6 +1,7 @@
 package com.anderiana.avanade.entity;
 
 import com.anderiana.avanade.dto.BatalhaDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,17 +24,24 @@ public class Batalha {
     @JoinColumn(name = "monstro_id")
     private Personagem monstro;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "quemIniciou_id")
     private Personagem quemIniciou;
-    @OneToMany(mappedBy = "batalha", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "batalha", cascade = CascadeType.ALL)//fetch = FetchType.EAGER)
     private List<Turno> turnos = new ArrayList<>();
+
+    public Batalha(Personagem heroi, Personagem monstro, Personagem quemIniciou) {
+        this.heroi = heroi;
+        this.monstro = monstro;
+        this.quemIniciou = quemIniciou;
+    }
 
     public BatalhaDto toDto(){
         return new BatalhaDto(this.id
                             ,this.heroi.getNome()
                             ,this.monstro.getNome()
                             ,this.quemIniciou.getNome()
-                            ,this.turnos);
+                            ,this.turnos.stream().map(Turno::toDto).toList());
     }
 
 }
