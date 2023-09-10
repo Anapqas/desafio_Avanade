@@ -1,7 +1,9 @@
 package com.anderiana.avanade.service;
 
 import com.anderiana.avanade.dto.request.AtaqueRequestDto;
+import com.anderiana.avanade.dto.request.DefesaRequestDto;
 import com.anderiana.avanade.dto.response.AtaqueResponseDto;
+import com.anderiana.avanade.dto.response.DefesaResponseDto;
 import com.anderiana.avanade.entity.Dados;
 import com.anderiana.avanade.entity.Personagem;
 import com.anderiana.avanade.entity.Turno;
@@ -16,21 +18,21 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AtaqueService {
+public class DefesaService {
     private final PersonagemRepository personagemRepository;
     private final TurnoRepository turnoRepository;
-    public ResponseEntity<AtaqueResponseDto> execute(AtaqueRequestDto request, Long turnoId){
-        Optional<Personagem> personagemOp = this.personagemRepository.findById(request.atacanteId());
+    public ResponseEntity<DefesaResponseDto> execute(DefesaRequestDto request, Long turnoId){
+        Optional<Personagem> personagemOp = this.personagemRepository.findById(request.defensorId());
         if (personagemOp.isPresent()){
-            Integer forca = personagemOp.get().getForca();
+            Integer defesa = personagemOp.get().getDefesa();
             Integer agilidade = personagemOp.get().getAgilidade();
             Integer lancaDado = new Dados(12, 1).jogarDados();
-            Integer acaoAtaque = forca + agilidade + lancaDado;
+            Integer acaoDefesa = defesa + agilidade + lancaDado;
             Optional<Turno> turnop = this.turnoRepository.findById(turnoId);
             Turno turno = turnop.get();
-            turno.setAtaque(acaoAtaque);
+            turno.setDefesa(acaoDefesa);
             this.turnoRepository.save(turno);
-            return ResponseEntity.ok().body(new AtaqueResponseDto(acaoAtaque));
+            return ResponseEntity.ok().body(new DefesaResponseDto(acaoDefesa));
         }else {
             throw new ObjectNotFoundException("Objeto não encontrado");
         }

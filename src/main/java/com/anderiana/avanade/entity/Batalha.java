@@ -29,6 +29,7 @@ public class Batalha {
     private Personagem quemIniciou;
     @OneToMany(mappedBy = "batalha", cascade = CascadeType.ALL)//fetch = FetchType.EAGER)
     private List<Turno> turnos = new ArrayList<>();
+    Boolean isFinalizada = Boolean.FALSE;
 
     public Batalha(Personagem heroi, Personagem monstro, Personagem quemIniciou) {
         this.heroi = heroi;
@@ -41,6 +42,7 @@ public class Batalha {
                             ,this.heroi.getNome()
                             ,this.monstro.getNome()
                             ,this.quemIniciou.getNome()
+                            ,this.isFinalizada
                             ,this.turnos.stream().map(Turno::toDto).toList());
     }
 

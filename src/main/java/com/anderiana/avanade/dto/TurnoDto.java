@@ -1,6 +1,6 @@
 package com.anderiana.avanade.dto;
 
-public record TurnoDto(Long id
+public record TurnoDto(Long turnoId
                       ,Integer ordem
                       ,String atacante
                       ,String defensor
