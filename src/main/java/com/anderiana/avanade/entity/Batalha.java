@@ -27,7 +27,7 @@ public class Batalha {
     @JsonIgnore
     @JoinColumn(name = "quemIniciou_id")
     private Personagem quemIniciou;
-    @OneToMany(mappedBy = "batalha", cascade = CascadeType.ALL)//fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "batalha", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Turno> turnos = new ArrayList<>();
     Boolean isFinalizada = Boolean.FALSE;
 
