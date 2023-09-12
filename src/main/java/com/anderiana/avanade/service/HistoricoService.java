@@ -1,7 +1,6 @@
 package com.anderiana.avanade.service;
 
 import com.anderiana.avanade.dto.BatalhaDto;
-import com.anderiana.avanade.dto.PersonagemDto;
 import com.anderiana.avanade.dto.TipoPersonagem;
 import com.anderiana.avanade.dto.request.IniciativaDto;
 import com.anderiana.avanade.entity.Batalha;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,9 +36,9 @@ public class HistoricoService {
             Personagem atacante = (quemComeca == TipoPersonagem.HEROI)? heroi.get():monstro.get();
             Personagem defensor = (quemComeca == TipoPersonagem.HEROI)? monstro.get():heroi.get();
             Batalha batalha = new Batalha(heroi.get(), monstro.get(),atacante);
-            batalha = this.batalhaRepository.save(batalha);
             Turno primeiroTurno = new Turno(batalha,atacante,defensor);
-            primeiroTurno = this.turnoRepository.save(primeiroTurno);
+            batalha.setTurnos(Arrays.asList(primeiroTurno));
+            batalha = this.batalhaRepository.save(batalha);
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("batalha/{id}").buildAndExpand(batalha.getId()).toUri();
             return ResponseEntity.created(uri).build();
        }else{
@@ -51,7 +51,7 @@ public class HistoricoService {
         return ResponseEntity.ok().body(batalhaOp.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")).toDto());
     }
     public ResponseEntity<List<BatalhaDto>>getAll() {
-        return ResponseEntity.ok().body(this.batalhaRepository.findAll().stream().map(batalha -> batalha.toDto()).toList());
+        return ResponseEntity.ok().body(this.batalhaRepository.findAll().stream().map(Batalha::toDto).toList());
     }
     public TipoPersonagem decideQuemComeca (){
         TipoPersonagem quemInicia = null;

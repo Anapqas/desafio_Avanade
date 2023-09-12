@@ -14,6 +14,18 @@ public class Personagem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Personagem(String nome, TipoPersonagem tipoPersonagem, Integer vida, Integer defesa, Integer forca, Integer agilidade, Integer quantidadeDados, Integer facesDado) {
+        this.nome = nome;
+        this.tipoPersonagem = tipoPersonagem;
+        this.vida = vida;
+        this.defesa = defesa;
+        this.forca = forca;
+        this.agilidade = agilidade;
+        this.quantidadeDados = quantidadeDados;
+        this.facesDado = facesDado;
+    }
+
     private String nome;
     private TipoPersonagem tipoPersonagem;
     private Integer vida;
