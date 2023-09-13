@@ -22,7 +22,7 @@ public class PersonagemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonagemDto> getOne(@PathVariable Long id) throws ObjectNotFoundException {
+    public ResponseEntity<PersonagemDto> getOne(@PathVariable Long id)  {
         return personagemService.getOne(id);
     }
     @GetMapping

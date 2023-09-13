@@ -42,13 +42,12 @@ public class HistoricoService {
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("batalha/{id}").buildAndExpand(batalha.getId()).toUri();
             return ResponseEntity.created(uri).build();
        }else{
-            throw new ObjectNotFoundException("Objeto não encontrado");
+            throw new ObjectNotFoundException("Personagem não encontrado.");
         }
-
     }
-    public ResponseEntity<BatalhaDto> getOne(Long id) throws ObjectNotFoundException{ //todo
+    public ResponseEntity<BatalhaDto> getOne(Long id) {
         Optional<Batalha> batalhaOp = this.batalhaRepository.findById(id);
-        return ResponseEntity.ok().body(batalhaOp.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado")).toDto());
+        return ResponseEntity.ok().body(batalhaOp.orElseThrow(() -> new ObjectNotFoundException("Batalha não encontrada")).toDto());
     }
     public ResponseEntity<List<BatalhaDto>>getAll() {
         return ResponseEntity.ok().body(this.batalhaRepository.findAll().stream().map(Batalha::toDto).toList());

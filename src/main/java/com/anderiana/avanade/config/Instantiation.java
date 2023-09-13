@@ -6,11 +6,12 @@ import com.anderiana.avanade.entity.Personagem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import java.util.Arrays;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
-
     @Autowired
     private PersonagemRepository personagemRepository;
 

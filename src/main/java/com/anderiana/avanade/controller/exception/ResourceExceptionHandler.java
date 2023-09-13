@@ -1,12 +1,14 @@
 package com.anderiana.avanade.controller.exception;
 
+import com.anderiana.avanade.service.exception.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.ObjectNotFoundException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
 @RequiredArgsConstructor
 @ControllerAdvice
 public class ResourceExceptionHandler {

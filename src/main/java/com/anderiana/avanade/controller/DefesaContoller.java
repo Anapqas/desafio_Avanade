@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/{batalha_id}/defesa/{turnoId}")
+@RequestMapping("/{batalhaId}/defesa/{turnoId}")
 @RequiredArgsConstructor
 public class DefesaContoller {
     private final DefesaService defesaService;

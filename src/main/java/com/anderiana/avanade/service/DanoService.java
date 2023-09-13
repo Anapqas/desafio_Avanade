@@ -1,11 +1,8 @@
 package com.anderiana.avanade.service;
 
-import com.anderiana.avanade.dto.request.DefesaRequestDto;
 import com.anderiana.avanade.dto.response.DanoResponseDto;
-import com.anderiana.avanade.dto.response.DefesaResponseDto;
 import com.anderiana.avanade.entity.Batalha;
 import com.anderiana.avanade.entity.Dados;
-import com.anderiana.avanade.entity.Personagem;
 import com.anderiana.avanade.entity.Turno;
 import com.anderiana.avanade.repository.BatalhaRepository;
 import com.anderiana.avanade.repository.PersonagemRepository;
@@ -25,7 +22,7 @@ public class DanoService {
     private final BatalhaRepository batalhaRepository;
     public ResponseEntity<DanoResponseDto> execute(Long turnoId){
         Optional<Turno> turnop = this.turnoRepository.findById(turnoId);
-        Turno turnoAtual = turnop.get();
+        Turno turnoAtual = turnop.orElseThrow(()->new ObjectNotFoundException("Turno não encontrado."));
         Integer dano = 0;
         if (turnoAtual.getDefesa()<turnoAtual.getAtaque()){
             dano = new Dados(turnoAtual.getAtacante().getFacesDado(), turnoAtual.getAtacante().getQuantidadeDados()).jogarDados() + turnoAtual.getAtacante().getForca();
@@ -38,11 +35,13 @@ public class DanoService {
         }
         if (turnoAtual.getSaldoVidaDefensor()<0){
             Optional<Batalha> batalha = this.batalhaRepository.findById(turnoAtual.getBatalha().getId());
-            batalha.get().setIsFinalizada(Boolean.TRUE);
+            batalha.orElseThrow(()->new ObjectNotFoundException("Batalha não encontrada.")).setIsFinalizada(Boolean.TRUE);
             this.batalhaRepository.save(batalha.get());
         }else{
            Turno turnoProximo = new Turno(turnoAtual.getBatalha(), turnoAtual.getDefensor(), turnoAtual.getAtacante());
            turnoProximo.setOrdem(turnoAtual.getOrdem()+1);
+           turnoProximo.setSaldoVidaDefensor(turnoAtual.getSaldoVidaAtacante());
+           turnoProximo.setSaldoVidaAtacante(turnoAtual.getSaldoVidaDefensor());
            this.turnoRepository.save(turnoProximo);
         }
         return ResponseEntity.ok().body(new DanoResponseDto(dano));
