@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class PersonagemServiceTest {
+class PersonagemServiceTest {
     @InjectMocks
     private PersonagemService personagemService;
 
@@ -26,9 +26,7 @@ public class PersonagemServiceTest {
         PersonagemDto dto = Mockito.mock(PersonagemDto.class);
         Mockito.when(dto.nome()).thenReturn("teste");
         when(personagemRepository.save(any(Personagem.class))).thenReturn(new Personagem());
-
         personagemService.create(dto);
-
         ArgumentCaptor<Personagem> captor = ArgumentCaptor.forClass(Personagem.class);
         Mockito.verify(personagemRepository,Mockito.times(1))
                 .save(captor.capture());
@@ -41,9 +39,7 @@ public class PersonagemServiceTest {
         PersonagemDto dto = Mockito.mock(PersonagemDto.class);
         Mockito.when(dto.nome()).thenReturn("teste");
         when(personagemRepository.save(any(Personagem.class))).thenReturn(new Personagem());
-
         personagemService.create(dto);
-
         ArgumentCaptor<Personagem> captor = ArgumentCaptor.forClass(Personagem.class);
         Mockito.verify(personagemRepository,Mockito.times(1))
                 .save(captor.capture());

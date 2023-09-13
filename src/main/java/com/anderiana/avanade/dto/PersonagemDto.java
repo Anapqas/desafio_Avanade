@@ -1,7 +1,5 @@
 package com.anderiana.avanade.dto;
 
-import com.anderiana.avanade.dto.TipoPersonagem;
-
 public record PersonagemDto(Long id
                            ,TipoPersonagem tipoPersonagem
                            ,String nome

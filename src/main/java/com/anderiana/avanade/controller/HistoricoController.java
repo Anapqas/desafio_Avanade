@@ -1,9 +1,7 @@
 package com.anderiana.avanade.controller;
 
 import com.anderiana.avanade.dto.BatalhaDto;
-import com.anderiana.avanade.dto.PersonagemDto;
 import com.anderiana.avanade.service.HistoricoService;
-import com.anderiana.avanade.service.PersonagemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

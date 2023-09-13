@@ -1,10 +1,7 @@
 package com.anderiana.avanade.controller;
 
-import com.anderiana.avanade.dto.request.DefesaRequestDto;
 import com.anderiana.avanade.dto.response.DanoResponseDto;
-import com.anderiana.avanade.dto.response.DefesaResponseDto;
 import com.anderiana.avanade.service.DanoService;
-import com.anderiana.avanade.service.DefesaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

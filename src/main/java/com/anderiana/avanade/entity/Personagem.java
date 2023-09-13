@@ -50,12 +50,6 @@ public class Personagem {
         this.id = id;
     }
 
-
-    public Integer executeDano(){
-       //TODO
-        return null;
-    }
-
     public PersonagemDto toDto(){
         return new PersonagemDto(this.id
                                 ,this.tipoPersonagem

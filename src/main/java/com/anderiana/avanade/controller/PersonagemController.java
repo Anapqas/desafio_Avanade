@@ -2,7 +2,6 @@ package com.anderiana.avanade.controller;
 
 import com.anderiana.avanade.dto.PersonagemDto;
 import com.anderiana.avanade.service.PersonagemService;
-import com.anderiana.avanade.service.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
