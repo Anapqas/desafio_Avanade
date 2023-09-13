@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/{batalha_id}/dano/{turnoId}")
+@RequestMapping("/{batalhaId}/dano/{turnoId}")
 @RequiredArgsConstructor
 public class DanoContoller {
     private final DanoService danoService;

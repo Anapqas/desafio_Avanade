@@ -1,16 +1,12 @@
 package com.anderiana.avanade.service;
 
-import com.anderiana.avanade.dto.request.DefesaRequestDto;
 import com.anderiana.avanade.dto.response.DanoResponseDto;
-import com.anderiana.avanade.dto.response.DefesaResponseDto;
 import com.anderiana.avanade.entity.Batalha;
 import com.anderiana.avanade.entity.Dados;
-import com.anderiana.avanade.entity.Personagem;
 import com.anderiana.avanade.entity.Turno;
 import com.anderiana.avanade.repository.BatalhaRepository;
 import com.anderiana.avanade.repository.PersonagemRepository;
 import com.anderiana.avanade.repository.TurnoRepository;
-import com.anderiana.avanade.service.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
