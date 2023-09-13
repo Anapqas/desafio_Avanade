@@ -24,13 +24,13 @@ public class PersonagemService {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(personagem.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-    public ResponseEntity<PersonagemDto> getOne(Long id) { //todo
+    public ResponseEntity<PersonagemDto> getOne(Long id) {
         Optional<Personagem> personagemOp = this.personagemRepository.findById(id);
         return ResponseEntity.ok().body(personagemOp.orElseThrow(() -> new ObjectNotFoundException("Personagem não encontrado")).toDto());
     }
 
     public ResponseEntity<List<PersonagemDto> >getAll() {
-        return ResponseEntity.ok().body(this.personagemRepository.findAll().stream().map(personagem -> personagem.toDto()).toList());
+        return ResponseEntity.ok().body(this.personagemRepository.findAll().stream().map(Personagem::toDto).toList());
 
     }
     public ResponseEntity<PersonagemDto> edit(PersonagemDto dto, Long id) {

@@ -27,12 +27,12 @@ public class AtaqueService {
             Integer lancaDado = new Dados(12, 1).jogarDados();
             Integer acaoAtaque = forca + agilidade + lancaDado;
             Optional<Turno> turnop = this.turnoRepository.findById(turnoId);
-            Turno turno = turnop.get();
+            Turno turno = turnop.orElseThrow(()->new ObjectNotFoundException("Turno não encontrado."));
             turno.setAtaque(acaoAtaque);
             this.turnoRepository.save(turno);
             return ResponseEntity.ok().body(new AtaqueResponseDto(acaoAtaque));
         }else {
-            throw new ObjectNotFoundException("Objeto não encontrado");
+            throw new ObjectNotFoundException("Atacante não encontrado.");
         }
     }
 }
